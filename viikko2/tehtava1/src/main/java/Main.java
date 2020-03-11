@@ -1,5 +1,11 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello gradle!");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("kuka olet: ");
+        String nimi = scanner.nextLine();
+
+        System.out.println("Hello " + nimi);
     }
 }
