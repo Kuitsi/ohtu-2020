@@ -1,0 +1,82 @@
+$ git remote show origin
+* remote origin
+  Fetch URL: git@github.com:Kuitsi/ohtu-2020.git
+  Push  URL: git@github.com:Kuitsi/ohtu-2020.git
+  HEAD branch: master
+  Remote branches:
+    haara1 tracked
+    haara2 tracked
+    master tracked
+  Local branches configured for 'git pull':
+    haara1 merges with remote haara1
+    master merges with remote master
+  Local refs configured for 'git push':
+    haara1 pushes to haara1 (up to date)
+    master pushes to master (up to date)
+
+
+$ git checkout --track origin/haara2
+Switched to a new branch 'haara2'
+Branch 'haara2' set up to track remote branch 'haara2' from 'origin'.
+
+
+$ git remote show origin
+* remote origin
+  Fetch URL: git@github.com:Kuitsi/ohtu-2020.git
+  Push  URL: git@github.com:Kuitsi/ohtu-2020.git
+  HEAD branch: master
+  Remote branches:
+    haara1 tracked
+    haara2 tracked
+    master tracked
+  Local branches configured for 'git pull':
+    haara1 merges with remote haara1
+    haara2 merges with remote haara2
+    master merges with remote master
+  Local refs configured for 'git push':
+    haara1 pushes to haara1 (up to date)
+    haara2 pushes to haara2 (local out of date)
+    master pushes to master (up to date)
+
+
+$ git status
+On branch haara2
+Your branch is up to date with 'origin/haara2'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        tehtava7/haara2_3.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+$ git add tehtava7/
+
+
+$ git status
+On branch haara2
+Your branch is up to date with 'origin/haara2'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   tehtava7/haara2_3.txt
+
+
+$ git fetch
+remote: Enumerating objects: 7, done.
+remote: Counting objects: 100% (7/7), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 4 (delta 1), reused 4 (delta 1), pack-reused 0
+Unpacking objects: 100% (4/4), done.
+From github.com:Kuitsi/ohtu-2020
+   6d42f36..72fb5c0  haara2     -> origin/haara2
+
+
+$ git merge
+Updating 6d42f36..72fb5c0
+Fast-forward
+ viikko2/tehtava7/haara2_2.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 viikko2/tehtava7/haara2_2.txt
