@@ -1,4 +1,3 @@
-
 package ohtu;
 
 public class Player {
@@ -16,5 +15,5 @@ public class Player {
     public String toString() {
         return name;
     }
-      
+
 }
