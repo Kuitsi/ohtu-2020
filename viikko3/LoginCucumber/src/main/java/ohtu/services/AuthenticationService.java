@@ -42,6 +42,7 @@ public class AuthenticationService {
         // validity check of username and password
         if (!username.matches("^[a-z]{3,}$")) return true;
         if (password.length() < 8) return true;
+        if (password.matches("^[a-zA-Z]+$")) return true;
 
         return false;
     }
