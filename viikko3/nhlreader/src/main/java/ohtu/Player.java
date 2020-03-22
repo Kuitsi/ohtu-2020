@@ -17,7 +17,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return name + ", team " + team + ", goals " + goals + ", assists " + assists;
+        return String.format("%-20s %3s %2s + %2s = %2s", name, team, goals, assists, (goals + assists));
     }
 
     public String getTeam() {
