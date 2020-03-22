@@ -50,4 +50,14 @@ public class Stepdefs {
         assertTrue(io.getPrints().contains(expectedOutput));
     }
 
+    @Given("user {string} with password {string} is created")
+    public void loginWithCreatedUser(String username, String password) throws Throwable {
+        inputLines.add("new");
+        inputLines.add(username);
+        inputLines.add(password);
+
+        io = new StubIO(inputLines);
+        app = new App(io, auth);
+        app.run();
+    }
 }
