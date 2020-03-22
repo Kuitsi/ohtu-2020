@@ -14,8 +14,8 @@ public class Main {
 
         String bodyText = Request.Get(url).execute().returnContent().asString();
 
-        System.out.println("json-muotoinen data:");
-        System.out.println( bodyText );
+        //System.out.println("json-muotoinen data:");
+        //System.out.println( bodyText );
 
         Gson mapper = new Gson();
         List<Player> players = mapper.fromJson(bodyText, new TypeToken<ArrayList<Player>>(){}.getType());
