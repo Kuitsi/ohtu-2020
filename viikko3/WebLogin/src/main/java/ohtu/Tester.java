@@ -19,10 +19,18 @@ public class Tester {
 
         sleep(2);
 
-        element = driver.findElement(By.name("username"));
+        // correct username and password
+        /*element = driver.findElement(By.name("username"));
         element.sendKeys("pekka");
         element = driver.findElement(By.name("password"));
         element.sendKeys("akkep");
+        element = driver.findElement(By.name("login"));*/
+
+        // correct username, incorrect password
+        element = driver.findElement(By.name("username"));
+        element.sendKeys("pekka");
+        element = driver.findElement(By.name("password"));
+        element.sendKeys("incorrect");
         element = driver.findElement(By.name("login"));
 
         sleep(2);
