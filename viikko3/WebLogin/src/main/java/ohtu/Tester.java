@@ -1,5 +1,6 @@
 package ohtu;
 
+import java.util.Random;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,24 +15,36 @@ public class Tester {
 
         sleep(2);
 
-        WebElement element = driver.findElement(By.linkText("login"));
+        // login
+        //WebElement element = driver.findElement(By.linkText("login"));
+        // new user
+        WebElement element = driver.findElement(By.linkText("register new user"));
         element.click();
 
         sleep(2);
 
-        // correct username and password
+        // login with correct username and password
         /*element = driver.findElement(By.name("username"));
         element.sendKeys("pekka");
         element = driver.findElement(By.name("password"));
         element.sendKeys("akkep");
         element = driver.findElement(By.name("login"));*/
 
-        // correct username, incorrect password
-        element = driver.findElement(By.name("username"));
+        // login with correct username, incorrect password
+        /*element = driver.findElement(By.name("username"));
         element.sendKeys("pekka");
         element = driver.findElement(By.name("password"));
         element.sendKeys("incorrect");
-        element = driver.findElement(By.name("login"));
+        element = driver.findElement(By.name("login"));*/
+
+        // new user
+        Random r = new Random();
+        element = driver.findElement(By.id("username"));
+        element.sendKeys("pekka"+r.nextInt(100000));
+        element = driver.findElement(By.id("password"));
+        element.sendKeys("akkep");
+        element = driver.findElement(By.id("passwordConfirmation"));
+        element.sendKeys("akkep");
 
         sleep(2);
         element.submit();
