@@ -51,6 +51,12 @@ public class Tester {
 
         sleep(3);
 
+        // logout after new user
+        clickLinkWithText("continue to application mainpage", driver);
+        sleep(2);
+        clickLinkWithText("logout", driver);
+        sleep(3);
+
         driver.quit();
     }
 
@@ -58,5 +64,18 @@ public class Tester {
         try{
             Thread.sleep(n*1000);
         } catch(Exception e){}
+    }
+
+    private static void clickLinkWithText(String text, WebDriver driver) {
+        int trials = 0;
+        while( trials++<5 ) {
+            try{
+                WebElement element = driver.findElement(By.linkText(text));
+                element.click();
+                break;
+            } catch(Exception e) {
+                System.out.println(e.getStackTrace());
+            }
+        }
     }
 }
