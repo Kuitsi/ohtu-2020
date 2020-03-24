@@ -12,6 +12,7 @@ repositories {
 task( browse, dependsOn: jar, type: JavaExec ) {
     main = 'ohtu.Tester'
     classpath = sourceSets.main.runtimeClasspath
+    systemProperty 'webdriver.chrome.driver', System.getProperty('webdriver.chrome.driver', 'C:\\Koodaus\\mooc-ohjelmistotuotanto\\chromedriver.exe')
 }
 
 project.ext {
