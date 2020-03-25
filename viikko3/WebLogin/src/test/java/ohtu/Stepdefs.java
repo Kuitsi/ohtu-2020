@@ -44,6 +44,11 @@ public class Stepdefs {
         pageHasContent("Give your credentials to login");
     }
 
+    @When("incorrect username {string} and password {string} are given")
+    public void incorrectUsernameAndAnyPasswordAreGiven(String username, String password) {
+        logInWith(username, password);
+    }
+
     @After
     public void tearDown(){
         driver.quit();
