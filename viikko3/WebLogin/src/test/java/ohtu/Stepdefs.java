@@ -62,20 +62,23 @@ public class Stepdefs {
 
     @When("a valid username {string} and password {string} and matching password confirmation are entered")
     public void validUsernameAndPasswordPlusConfirmationAreGiven(String username, String password) {
-        pageHasContent("Create username and give password");
-        WebElement element = driver.findElement(By.name("username"));
-        element.sendKeys(username);
-        element = driver.findElement(By.name("password"));
-        element.sendKeys(password);
-        element = driver.findElement(By.name("passwordConfirmation"));
-        element.sendKeys(password);
-        element = driver.findElement(By.name("signup"));
-        element.submit();
+        enterUserInformation(username, password, password);
     }
 
     @Then("a new user is created")
     public void newUserIsRedirectedToMainPage() {
         pageHasContent("Welcome to Ohtu Application!");
+    }
+
+    @When("an invalid username {string} and password {string} and matching password confirmation are entered")
+    public void invalidUsernameAndValidPasswordPlusConfirmationsAreGiven(String username, String password) {
+        enterUserInformation(username, password, password);
+    }
+
+    @Then("user is not created and error {string} is reported")
+    public void retryNewUserWithErrorMessage(String errorMessage) {
+        pageHasContent("Create username and give password");
+        pageHasContent(errorMessage);
     }
 
     @After
@@ -96,6 +99,18 @@ public class Stepdefs {
         element = driver.findElement(By.name("password"));
         element.sendKeys(password);
         element = driver.findElement(By.name("login"));
+        element.submit();
+    }
+
+    private void enterUserInformation(String username, String password, String passwordConfirmation) {
+        pageHasContent("Create username and give password");
+        WebElement element = driver.findElement(By.name("username"));
+        element.sendKeys(username);
+        element = driver.findElement(By.name("password"));
+        element.sendKeys(password);
+        element = driver.findElement(By.name("passwordConfirmation"));
+        element.sendKeys(passwordConfirmation);
+        element = driver.findElement(By.name("signup"));
         element.submit();
     }
 }
