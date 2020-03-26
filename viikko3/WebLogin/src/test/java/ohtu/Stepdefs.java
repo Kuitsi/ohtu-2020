@@ -106,6 +106,16 @@ public class Stepdefs {
         pageHasContent("Ohtu App");
     }
 
+    @Given("user with username {string} and password {string} is tried to be created")
+    public void tryRegisteringInvalidUserAndNavigateToMainpage(String username, String password) {
+        newUserIsSelected();
+        enterUserInformation(username, password, password);
+        pageHasContent("Create username and give password");
+
+        clickLinkWithText("back to home", driver);
+        pageHasContent("Ohtu App");
+    }
+
     @After
     public void tearDown(){
         driver.quit();
