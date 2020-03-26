@@ -91,6 +91,21 @@ public class Stepdefs {
         enterUserInformation(username, password, passwordConfirmation);
     }
 
+    @Given("user with username {string} with password {string} is successfully created")
+    public void validUsernameAndPasswordsAreGiven(String username, String password) {
+        newUserIsSelected();
+        enterUserInformation(username, password, password);
+    }
+
+    @Given("user has logged out")
+    public void navigateOutAfterRegistering() {
+        pageHasContent("Welcome to Ohtu Application!");
+        clickLinkWithText("continue to application mainpage", driver);
+        pageHasContent("Ohtu Application main page");
+        clickLinkWithText("logout", driver);
+        pageHasContent("Ohtu App");
+    }
+
     @After
     public void tearDown(){
         driver.quit();
@@ -122,5 +137,18 @@ public class Stepdefs {
         element.sendKeys(passwordConfirmation);
         element = driver.findElement(By.name("signup"));
         element.submit();
+    }
+
+    private static void clickLinkWithText(String text, WebDriver driver) {
+        int trials = 0;
+        while( trials++<5 ) {
+            try{
+                WebElement element = driver.findElement(By.linkText(text));
+                element.click();
+                break;
+            } catch(Exception e) {
+                System.out.println(e.getStackTrace());
+            }
+        }
     }
 }

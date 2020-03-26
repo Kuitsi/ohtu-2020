@@ -1,4 +1,4 @@
-Feature: A new user account can be created if a proper unused username and password are given
+Feature: A new user account can be created if a proper unused username and a proper password are given
 
     Scenario: creation is successful with valid username and password
         Given command new user is selected
@@ -29,3 +29,10 @@ Feature: A new user account can be created if a proper unused username and passw
         Given command new user is selected
         When  a valid username "asdasd" and invalid password "asdasdasd" and matching password confirmation are entered
         Then  user is not created and error "password should not contain only letters" is reported
+
+    Scenario: user can login with successfully generated account
+        Given user with username "lea" with password "salainen1" is successfully created
+        And   user has logged out
+        And   login is selected
+        When  correct username "lea" and password "salainen1" are given
+        Then  user is logged in
