@@ -81,6 +81,11 @@ public class Stepdefs {
         pageHasContent(errorMessage);
     }
 
+    @When("a valid username {string} and invalid password {string} and matching password confirmation are entered")
+    public void validUsernameAndInvalidPasswordPlusValidConfirmationsAreGiven(String username, String password) {
+        enterUserInformation(username, password, password);
+    }
+
     @After
     public void tearDown(){
         driver.quit();
