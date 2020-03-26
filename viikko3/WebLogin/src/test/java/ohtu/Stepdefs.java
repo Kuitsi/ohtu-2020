@@ -86,6 +86,11 @@ public class Stepdefs {
         enterUserInformation(username, password, password);
     }
 
+    @When("a valid username {string} is entered but password confirmation {string} does not match valid password {string}")
+    public void validUsernameAndMismatchingPasswordsAreGiven(String username, String passwordConfirmation, String password) {
+        enterUserInformation(username, password, passwordConfirmation);
+    }
+
     @After
     public void tearDown(){
         driver.quit();
