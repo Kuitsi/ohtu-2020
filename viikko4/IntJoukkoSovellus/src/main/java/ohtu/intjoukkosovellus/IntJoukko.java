@@ -37,14 +37,13 @@ public class IntJoukko {
         }
 
         if (!kuuluu(luku)) {
-            ljono[alkioidenLkm] = luku;
+            ljono[alkioidenLkm] = luku; // lisätään uusi luku taulukon perään
             alkioidenLkm++;
             if (alkioidenLkm % ljono.length == 0) {
-                int[] taulukkoOld = new int[ljono.length];
-                taulukkoOld = ljono;
-                kopioiTaulukko(ljono, taulukkoOld);
-                ljono = new int[alkioidenLkm + kasvatuskoko];
-                kopioiTaulukko(taulukkoOld, ljono);
+                // ei mahtuisi enää seuraavaa lisäystä, joten kasvatetaan taulukkoa valmiiksi
+                int[] uusiTaulukko = new int[alkioidenLkm + kasvatuskoko];
+                System.arraycopy(ljono, 0, uusiTaulukko, 0, alkioidenLkm);
+                ljono = uusiTaulukko;
             }
             return true;
         }
@@ -80,22 +79,12 @@ public class IntJoukko {
             alkioidenLkm--;
             return true;
         }
-
-
         return false;
-    }
-
-    private void kopioiTaulukko(int[] vanha, int[] uusi) {
-        for (int i = 0; i < vanha.length; i++) {
-            uusi[i] = vanha[i];
-        }
-
     }
 
     public int mahtavuus() { // mielenkiintoinen nimivalinta, mutta on dokumentoitu kuuluvaksi julkiseen APIin
         return alkioidenLkm;
     }
-
 
     @Override
     public String toString() {
@@ -122,7 +111,6 @@ public class IntJoukko {
         }
         return taulu;
     }
-   
 
     public static IntJoukko yhdiste(IntJoukko a, IntJoukko b) {
         IntJoukko x = new IntJoukko();
@@ -149,9 +137,8 @@ public class IntJoukko {
             }
         }
         return y;
-
     }
-    
+
     public static IntJoukko erotus ( IntJoukko a, IntJoukko b) {
         IntJoukko z = new IntJoukko();
         int[] aTaulu = a.toIntArray();
@@ -165,5 +152,5 @@ public class IntJoukko {
  
         return z;
     }
-        
+
 }
