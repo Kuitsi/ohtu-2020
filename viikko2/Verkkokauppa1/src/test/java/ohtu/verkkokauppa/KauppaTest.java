@@ -87,4 +87,22 @@ public class KauppaTest {
         // sitten suoritetaan varmistus, että pankin metodia tilisiirto on kutsuttu oikeilla arvoilla
         verify(pankki).tilisiirto(eq("pekka"), eq(42), eq("12345"), anyString(), eq(10));
     }
+
+    @Test
+    public void kahdenEriTuotteenJoistaToinenOnLoppuOstossaPankinMetodiaTilisiirtoKutsutaanOikeillaArvoilla() {
+        when(varasto.saldo(3)).thenReturn(0);
+        when(varasto.haeTuote(3)).thenReturn(new Tuote(3, "jäätelö", 10));
+
+        // sitten testattava kauppa
+        Kauppa k = new Kauppa(varasto, pankki, viite);
+
+        // tehdään ostokset
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1); // ostetaan tuotetta numero 1 eli maitoa
+        k.lisaaKoriin(3); // jäätelö, joka on loppu varastosta
+        k.tilimaksu("pekka", "12345");
+
+        // sitten suoritetaan varmistus, että pankin metodia tilisiirto on kutsuttu oikeilla arvoilla
+        verify(pankki).tilisiirto(eq("pekka"), eq(42), eq("12345"), anyString(), eq(5));
+    }
 }
