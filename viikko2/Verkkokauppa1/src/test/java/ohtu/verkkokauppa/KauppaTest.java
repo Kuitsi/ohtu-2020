@@ -13,21 +13,20 @@ public class KauppaTest {
 
     @Before
     public void setUp() {
-        // luodaan mock-oliot
         pankki = mock(Pankki.class);
-        viite = mock(Viitegeneraattori.class);
-        varasto = mock(Varasto.class);
 
+        viite = mock(Viitegeneraattori.class);
         // määritellään että viitegeneraattori palauttaa viitteen 42
         when(viite.uusi()).thenReturn(42);
+
+        varasto = mock(Varasto.class);
+        // määritellään että tuote numero 1 on maito jonka hinta on 5 ja saldo 10
+        when(varasto.saldo(1)).thenReturn(10);
+        when(varasto.haeTuote(1)).thenReturn(new Tuote(1, "maito", 5));
     }
 
     @Test
     public void ostoksenPaaytyttyaPankinMetodiaTilisiirtoKutsutaan() {
-        // määritellään että tuote numero 1 on maito jonka hinta on 5 ja saldo 10
-        when(varasto.saldo(1)).thenReturn(10);
-        when(varasto.haeTuote(1)).thenReturn(new Tuote(1, "maito", 5));
-
         // sitten testattava kauppa
         Kauppa k = new Kauppa(varasto, pankki, viite);
 
@@ -43,10 +42,6 @@ public class KauppaTest {
 
     @Test
     public void ostoksenPaaytyttyaPankinMetodiaTilisiirtoKutsutaanOikeillaArvoilla() {
-        // määritellään että tuote numero 1 on maito jonka hinta on 5 ja saldo 10
-        when(varasto.saldo(1)).thenReturn(10);
-        when(varasto.haeTuote(1)).thenReturn(new Tuote(1, "maito", 5));
-
         // sitten testattava kauppa
         Kauppa k = new Kauppa(varasto, pankki, viite);
 
@@ -60,9 +55,8 @@ public class KauppaTest {
     }
 
     @Test
-    public void kahdenTuotteenOstossaPankinMetodiaTilisiirtoKutsutaanOikeillaArvoilla() {
-        when(varasto.saldo(1)).thenReturn(10);
-        when(varasto.haeTuote(1)).thenReturn(new Tuote(1, "maito", 5));
+    public void kahdenEriTuotteenOstossaPankinMetodiaTilisiirtoKutsutaanOikeillaArvoilla() {
+        // tuote numero 2 on leipä jonka hinta on 6 ja saldo 10
         when(varasto.saldo(2)).thenReturn(10);
         when(varasto.haeTuote(2)).thenReturn(new Tuote(2, "leipä", 6));
 
