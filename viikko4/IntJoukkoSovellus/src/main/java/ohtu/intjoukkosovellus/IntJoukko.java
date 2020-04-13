@@ -88,20 +88,16 @@ public class IntJoukko {
 
     @Override
     public String toString() {
-        if (alkioidenLkm == 0) {
-            return "{}";
-        } else if (alkioidenLkm == 1) {
-            return "{" + ljono[0] + "}";
-        } else {
-            String tuotos = "{";
-            for (int i = 0; i < alkioidenLkm - 1; i++) {
-                tuotos += ljono[i];
-                tuotos += ", ";
+        StringBuilder sb = new StringBuilder();
+        sb.append('{');
+        for (int i = 0; i < alkioidenLkm; i++) {
+            if (i > 0) {
+                sb.append(", ");
             }
-            tuotos += ljono[alkioidenLkm - 1];
-            tuotos += "}";
-            return tuotos;
+            sb.append(ljono[i]);
         }
+        sb.append('}');
+        return sb.toString();
     }
 
     public int[] toIntArray() {
