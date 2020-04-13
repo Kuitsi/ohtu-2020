@@ -13,9 +13,7 @@ public class Sovellus {
     }
 
     private static IntJoukko mikaJoukko() {
-        String luettu;
-        Scanner lukija = new Scanner(System.in);
-        luettu = luku();
+        String luettu = luku();
         while (true) {
             if (luettu.equals("A") || luettu.equals("a")) {
                 return A;
@@ -41,8 +39,6 @@ public class Sovellus {
         System.out.print("Mikä luku lisätään? ");
         lisLuku = lukija.nextInt();
         joukko.lisaa(lisLuku);
-        return;
-
     }
 
     private static void yhdiste() {
@@ -53,7 +49,6 @@ public class Sovellus {
         bJoukko = mikaJoukko();
         c = IntJoukko.yhdiste(aJoukko, bJoukko);
         System.out.println("A yhdiste B = " + c.toString());
-        return;
     }
 
     private static void leikkaus() {
@@ -64,7 +59,6 @@ public class Sovellus {
         bJoukko = mikaJoukko();
         c = IntJoukko.leikkaus(aJoukko, bJoukko);
         System.out.println("A leikkaus B = " + c.toString());
-        return;
     }
 
     private static void erotus() {
@@ -75,7 +69,6 @@ public class Sovellus {
         bJoukko = mikaJoukko();
         c = IntJoukko.erotus(aJoukko, bJoukko);
         System.out.println("A erotus B = " + c.toString());
-        return;
     }
 
     private static void poista() {
@@ -87,7 +80,6 @@ public class Sovellus {
         System.out.print("Mikä luku poistetaan? ");
         lisLuku = lukija.nextInt();
         joukko.poista(lisLuku);
-        return;
     }
 
     private static void kuuluu() {
@@ -104,7 +96,6 @@ public class Sovellus {
         } else {
             System.out.println(kysLuku + " ei kuulu joukkoon ");
         }
-        return;
     }
 
     public static void main(String[] args) {

@@ -50,8 +50,6 @@ public class IntJoukko {
     }
 
     public boolean lisaa(int luku) {
-
-        int eiOle = 0;
         if (alkioidenLkm == 0) {
             ljono[0] = luku;
             alkioidenLkm++;
