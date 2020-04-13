@@ -105,4 +105,25 @@ public class KauppaTest {
         // sitten suoritetaan varmistus, että pankin metodia tilisiirto on kutsuttu oikeilla arvoilla
         verify(pankki).tilisiirto(eq("pekka"), eq(42), eq("12345"), anyString(), eq(5));
     }
+
+    @Test
+    public void metodinAloitaAsiointiAloittaaUudenSession() {
+        when(varasto.saldo(4)).thenReturn(1);
+        when(varasto.haeTuote(4)).thenReturn(new Tuote(4, "paisti", 15));
+
+        Kauppa k = new Kauppa(varasto, pankki, viite);
+
+        // tehdään ostokset
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1); // ostetaan tuotetta numero 1 eli maitoa
+        k.tilimaksu("pekka", "12345");
+        verify(pankki).tilisiirto(eq("pekka"), anyInt(), eq("12345"), anyString(), eq(5));
+
+        // uusi tyhjä sessio edellisen asiakkaan jälkeen
+        k.aloitaAsiointi();
+        k.lisaaKoriin(4);
+        k.tilimaksu("pertti", "13579");
+
+        verify(pankki).tilisiirto(eq("pertti"), anyInt(), eq("13579"), anyString(), eq(15));
+    }
 }
