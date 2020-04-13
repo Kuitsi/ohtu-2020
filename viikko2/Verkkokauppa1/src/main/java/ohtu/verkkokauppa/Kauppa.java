@@ -25,7 +25,8 @@ public class Kauppa {
     }
 
     public void poistaKorista(int id) {
-        Tuote t = varasto.haeTuote(id); 
+        Tuote t = varasto.haeTuote(id);
+        //TODO: varmaan pitäisi kutsua myös ostoskori.poista(Tuote) ja tehdä logiikka jos tuotetta ei ole korissa
         varasto.palautaVarastoon(t);
     }
 

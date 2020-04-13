@@ -159,4 +159,19 @@ public class KauppaTest {
         // tarkistetaan vielä, että viitegeneraattorin metodia uusi() kutsuttu kolme kertaa
         verify(viite, times(3)).uusi();
     }
+
+    @Test
+    public void poistaKoristaPalauttaaVarastoon() {
+        Kauppa k = new Kauppa(varasto, pankki, viite);
+        int tuoteId = 1;
+        k.aloitaAsiointi();
+        k.lisaaKoriin(tuoteId);
+
+        k.poistaKorista(tuoteId);
+
+        Tuote t = varasto.haeTuote(tuoteId);
+        verify(varasto, times(1)).palautaVarastoon(t);
+
+        //TODO: olisi hyvä testata myös häviääkö tuote ostoskorista sekä kasvaako varaston saldo, mutta niille pitäisi keksiä sopiva testaustapa mockien kautta/ohi
+    }
 }
