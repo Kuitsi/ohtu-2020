@@ -126,4 +126,37 @@ public class KauppaTest {
 
         verify(pankki).tilisiirto(eq("pertti"), anyInt(), eq("13579"), anyString(), eq(15));
     }
+
+    @Test
+    public void kaytetaanPerakkaistenViitekutsujenArvoja() {
+        // määritellään että metodi palauttaa ensimmäisellä kutsukerralla 1, toisella 2
+        // ja kolmannella 3. Tämän pitäisi jyrätä setUp():ssa määritetyn arvon
+        when(viite.uusi()).
+                thenReturn(1).
+                thenReturn(2).
+                thenReturn(3);
+
+        Kauppa k = new Kauppa(varasto, pankki, viite);
+
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.tilimaksu("a", "111-111");
+        // varmistetaan, että nyt käytössä ensimmäisenä pyydetty viite
+        verify(pankki).tilisiirto(anyString(), eq(1), anyString(), anyString(), anyInt());
+
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.tilimaksu("b", "222-222");
+        // ... toisena pyydetty viite
+        verify(pankki).tilisiirto(anyString(), eq(2), anyString(), anyString(), anyInt());
+
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.tilimaksu("c", "333-333");
+        // ... ja kolmantena pyydetty viite
+        verify(pankki).tilisiirto(anyString(), eq(3), anyString(), anyString(), anyInt());
+
+        // tarkistetaan vielä, että viitegeneraattorin metodia uusi() kutsuttu kolme kertaa
+        verify(viite, times(3)).uusi();
+    }
 }
