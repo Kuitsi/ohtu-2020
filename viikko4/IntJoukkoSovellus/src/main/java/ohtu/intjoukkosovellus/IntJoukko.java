@@ -37,8 +37,8 @@ public class IntJoukko {
             ljono[0] = luku;
             alkioidenLkm++;
             return true;
-        } else {
         }
+
         if (!kuuluu(luku)) {
             ljono[alkioidenLkm] = luku;
             alkioidenLkm++;
@@ -61,11 +61,7 @@ public class IntJoukko {
                 on++;
             }
         }
-        if (on > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return on > 0;
     }
 
     public boolean poista(int luku) {
@@ -99,7 +95,7 @@ public class IntJoukko {
 
     }
 
-    public int mahtavuus() {
+    public int mahtavuus() { // mielenkiintoinen nimivalinta, mutta on dokumentoitu kuuluvaksi julkiseen APIin
         return alkioidenLkm;
     }
 
