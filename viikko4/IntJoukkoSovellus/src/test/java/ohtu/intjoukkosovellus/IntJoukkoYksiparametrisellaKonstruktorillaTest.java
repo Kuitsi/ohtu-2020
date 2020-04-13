@@ -2,7 +2,7 @@ package ohtu.intjoukkosovellus;
 
 import org.junit.Before;
 
-public class IntJoukkuYksiparametrisellaKonstruktorillaTest extends IntJoukkoTest {
+public class IntJoukkoYksiparametrisellaKonstruktorillaTest extends IntJoukkoTest {
     
     @Before
     @Override
