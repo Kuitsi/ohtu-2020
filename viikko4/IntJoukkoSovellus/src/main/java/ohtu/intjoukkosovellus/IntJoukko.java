@@ -25,9 +25,6 @@ public class IntJoukko {
             throw new IndexOutOfBoundsException("Kasvatuskoon täytyy olla positiivinen");
         }
         ljono = new int[kapasiteetti];
-        for (int i = 0; i < ljono.length; i++) {
-            ljono[i] = 0;
-        }
         alkioidenLkm = 0;
         this.kasvatuskoko = kasvatuskoko;
     }
