@@ -102,9 +102,7 @@ public class IntJoukko {
 
     public int[] toIntArray() {
         int[] taulu = new int[alkioidenLkm];
-        for (int i = 0; i < taulu.length; i++) {
-            taulu[i] = ljono[i];
-        }
+        System.arraycopy(ljono, 0, taulu, 0, taulu.length);
         return taulu;
     }
 
