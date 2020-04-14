@@ -5,9 +5,12 @@ public class IntJoukko {
     public final static int OLETUSKAPASITEETTI = 5;
     /** luotava uusi taulukko on näin paljon isompi kuin vanha */
     public final static int OLETUSKASVATUS = 5;
-    private int kasvatuskoko;     // Uusi taulukko on tämän verran vanhaa suurempi.
-    private int[] ljono;      // Joukon luvut säilytetään taulukon alkupäässä. 
-    private int alkioidenLkm;    // Tyhjässä joukossa alkioiden_määrä on nolla. 
+    /** Koko, jolla alkuioiden taulukkoa kasvatetaan tarvittaessa */
+    private int kasvatuskoko;
+    /** Taulukko joukon alkioista. Joukon luvut säilytetään taulukon alkupäässä. */
+    private int[] joukonAlkiot;
+    /** Montako alkiota {@code joukonAlkiot} oikeasti sisältää. Tyhjässä joukossa 0. */
+    private int alkioidenLkm;
 
     public IntJoukko() {
         this(OLETUSKAPASITEETTI);
@@ -24,26 +27,26 @@ public class IntJoukko {
         if (kasvatuskoko < 0) {
             throw new IndexOutOfBoundsException("Kasvatuskoon täytyy olla positiivinen");
         }
-        ljono = new int[kapasiteetti];
+        joukonAlkiot = new int[kapasiteetti];
         alkioidenLkm = 0;
         this.kasvatuskoko = kasvatuskoko;
     }
 
     public boolean lisaa(int luku) {
         if (alkioidenLkm == 0) {
-            ljono[0] = luku;
+            joukonAlkiot[0] = luku;
             alkioidenLkm++;
             return true;
         }
 
         if (!kuuluu(luku)) {
-            ljono[alkioidenLkm] = luku; // lisätään uusi luku taulukon perään
+            joukonAlkiot[alkioidenLkm] = luku; // lisätään uusi luku taulukon perään
             alkioidenLkm++;
-            if (alkioidenLkm % ljono.length == 0) {
+            if (alkioidenLkm % joukonAlkiot.length == 0) {
                 // ei mahtuisi enää seuraavaa lisäystä, joten kasvatetaan taulukkoa valmiiksi
                 int[] uusiTaulukko = new int[alkioidenLkm + kasvatuskoko];
-                System.arraycopy(ljono, 0, uusiTaulukko, 0, alkioidenLkm);
-                ljono = uusiTaulukko;
+                System.arraycopy(joukonAlkiot, 0, uusiTaulukko, 0, alkioidenLkm);
+                joukonAlkiot = uusiTaulukko;
             }
             return true;
         }
@@ -53,16 +56,15 @@ public class IntJoukko {
     /**
      * Selvittää, kuuluuko luku joukkoon.
      * @param luku
-     * @return 
+     * @return true jos kuuluu
      */
     public boolean kuuluu(int luku) {
-        int on = 0;
         for (int i = 0; i < alkioidenLkm; i++) {
-            if (luku == ljono[i]) {
-                on++;
+            if (luku == joukonAlkiot[i]) {
+                return true;
             }
         }
-        return on > 0;
+        return false;
     }
 
     /**
@@ -71,20 +73,21 @@ public class IntJoukko {
      * @return true, jos luku todellakin poistettiin, muuten false
      */
     public boolean poista(int luku) {
-        int kohta = -1;
-        int apu;
+        int indeksi = -1;
+        // nollataan löytynyt alkio
         for (int i = 0; i < alkioidenLkm; i++) {
-            if (luku == ljono[i]) {
-                kohta = i; //siis luku löytyy tuosta kohdasta :D
-                ljono[kohta] = 0;
+            if (luku == joukonAlkiot[i]) {
+                indeksi = i;
+                joukonAlkiot[indeksi] = 0;
                 break;
             }
         }
-        if (kohta != -1) {
-            for (int j = kohta; j < alkioidenLkm - 1; j++) {
-                apu = ljono[j];
-                ljono[j] = ljono[j + 1];
-                ljono[j + 1] = apu;
+        // siirretään poiston jälkeen lopputaulukkoa pykälällä alkuun päin
+        if (indeksi != -1) {
+            for (int j = indeksi; j < alkioidenLkm - 1; j++) {
+                int apu = joukonAlkiot[j];
+                joukonAlkiot[j] = joukonAlkiot[j + 1];
+                joukonAlkiot[j + 1] = apu;
             }
             alkioidenLkm--;
             return true;
@@ -104,7 +107,7 @@ public class IntJoukko {
             if (i > 0) {
                 sb.append(", ");
             }
-            sb.append(ljono[i]);
+            sb.append(joukonAlkiot[i]);
         }
         sb.append('}');
         return sb.toString();
@@ -112,7 +115,7 @@ public class IntJoukko {
 
     public int[] toIntArray() {
         int[] taulu = new int[alkioidenLkm];
-        System.arraycopy(ljono, 0, taulu, 0, taulu.length);
+        System.arraycopy(joukonAlkiot, 0, taulu, 0, taulu.length);
         return taulu;
     }
 
