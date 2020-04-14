@@ -126,16 +126,14 @@ public class IntJoukko {
      * @return joukko, joka sisältää kaikki a:n ja b:n alkiot
      */
     public static IntJoukko yhdiste(IntJoukko a, IntJoukko b) {
-        IntJoukko x = new IntJoukko();
-        int[] aTaulu = a.toIntArray();
-        int[] bTaulu = b.toIntArray();
-        for (int i = 0; i < aTaulu.length; i++) {
-            x.lisaa(aTaulu[i]);
+        IntJoukko yhdiste = new IntJoukko();
+        for (int arvo : a.toIntArray()) {
+            yhdiste.lisaa(arvo);
         }
-        for (int i = 0; i < bTaulu.length; i++) {
-            x.lisaa(bTaulu[i]);
+        for (int arvo : b.toIntArray()) {
+            yhdiste.lisaa(arvo);
         }
-        return x;
+        return yhdiste;
     }
 
     /**
@@ -145,17 +143,15 @@ public class IntJoukko {
      * @return joukko, jonka kaikki alkiot kuuluvat sekä joukkoon a että joukkoon b
      */
     public static IntJoukko leikkaus(IntJoukko a, IntJoukko b) {
-        IntJoukko y = new IntJoukko();
-        int[] aTaulu = a.toIntArray();
-        int[] bTaulu = b.toIntArray();
-        for (int i = 0; i < aTaulu.length; i++) {
-            for (int j = 0; j < bTaulu.length; j++) {
-                if (aTaulu[i] == bTaulu[j]) {
-                    y.lisaa(bTaulu[j]);
+        IntJoukko leikkaus = new IntJoukko();
+        for (int aArvo : a.toIntArray()) {
+            for (int bArvo : b.toIntArray()) {
+                if (aArvo == bArvo) {
+                    leikkaus.lisaa(bArvo);
                 }
             }
         }
-        return y;
+        return leikkaus;
     }
 
     /**
@@ -165,17 +161,14 @@ public class IntJoukko {
      * @return joukko, joka sisältää kaikki a:n alkiot, jotka eivät kuulu joukkoon b
      */
     public static IntJoukko erotus(IntJoukko a, IntJoukko b) {
-        IntJoukko z = new IntJoukko();
-        int[] aTaulu = a.toIntArray();
-        int[] bTaulu = b.toIntArray();
-        for (int i = 0; i < aTaulu.length; i++) {
-            z.lisaa(aTaulu[i]);
+        IntJoukko erotus = new IntJoukko();
+        for (int aArvo : a.toIntArray()) {
+            erotus.lisaa(aArvo);
         }
-        for (int i = 0; i < bTaulu.length; i++) {
-            z.poista(bTaulu[i]);
+        for (int bArvo : b.toIntArray()) {
+            erotus.poista(bArvo);
         }
- 
-        return z;
+        return erotus;
     }
 
 }
