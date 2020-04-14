@@ -50,6 +50,11 @@ public class IntJoukko {
         return false;
     }
 
+    /**
+     * Selvittää, kuuluuko luku joukkoon.
+     * @param luku
+     * @return 
+     */
     public boolean kuuluu(int luku) {
         int on = 0;
         for (int i = 0; i < alkioidenLkm; i++) {
@@ -60,6 +65,11 @@ public class IntJoukko {
         return on > 0;
     }
 
+    /**
+     * Poistaa joukosta luvun, jos se siellä sattui olemaan
+     * @param luku
+     * @return true, jos luku todellakin poistettiin, muuten false
+     */
     public boolean poista(int luku) {
         int kohta = -1;
         int apu;
@@ -106,6 +116,12 @@ public class IntJoukko {
         return taulu;
     }
 
+    /**
+     * Joukkojen yhdiste
+     * @param a
+     * @param b
+     * @return joukko, joka sisältää kaikki a:n ja b:n alkiot
+     */
     public static IntJoukko yhdiste(IntJoukko a, IntJoukko b) {
         IntJoukko x = new IntJoukko();
         int[] aTaulu = a.toIntArray();
@@ -119,6 +135,12 @@ public class IntJoukko {
         return x;
     }
 
+    /**
+     * Joukkojen leikkaus
+     * @param a
+     * @param b
+     * @return joukko, jonka kaikki alkiot kuuluvat sekä joukkoon a että joukkoon b
+     */
     public static IntJoukko leikkaus(IntJoukko a, IntJoukko b) {
         IntJoukko y = new IntJoukko();
         int[] aTaulu = a.toIntArray();
@@ -133,7 +155,13 @@ public class IntJoukko {
         return y;
     }
 
-    public static IntJoukko erotus ( IntJoukko a, IntJoukko b) {
+    /**
+     * Joukkojen erotus
+     * @param a
+     * @param b
+     * @return joukko, joka sisältää kaikki a:n alkiot, jotka eivät kuulu joukkoon b
+     */
+    public static IntJoukko erotus(IntJoukko a, IntJoukko b) {
         IntJoukko z = new IntJoukko();
         int[] aTaulu = a.toIntArray();
         int[] bTaulu = b.toIntArray();
