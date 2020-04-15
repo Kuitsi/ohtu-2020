@@ -44,20 +44,17 @@ public class TennisGame {
             return getEvenScore();
         }
 
-        String score = "";
-        int tempScore = 0;
-        if (player1score >= 4 || player2score >= 4) {
-            int minusResult = player1score - player2score;
-            if (minusResult == 1) {
-                score = "Advantage " + player1Name;
-            } else if (minusResult == -1) {
-                score = "Advantage " + player2Name;
-            } else if (minusResult >= 2) {
-                score = "Win for " + player1Name;
+        boolean isExtraPoints = player1score >= 4 || player2score >= 4;
+        if (isExtraPoints) {
+            int pointsDifference = player1score - player2score;
+            if (Math.abs(pointsDifference) >= 2) {
+                return "Win for " + (player1score > player2score ? player1Name : player2Name);
             } else {
-                score = "Win for " + player2Name;
+                return "Advantage " + (player1score > player2score ? player1Name : player2Name);
             }
         } else {
+            String score = "";
+            int tempScore = 0;
             for (int i = 1; i < 3; i++) {
                 if (i == 1) {
                     tempScore = player1score;
@@ -80,7 +77,7 @@ public class TennisGame {
                         break;
                 }
             }
+            return score;
         }
-        return score;
     }
 }
