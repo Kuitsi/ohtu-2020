@@ -39,6 +39,10 @@ public class TennisGame {
         }
     }
 
+    private String getMidgameScore() {
+        return scoreNames.get(player1score) + "-" + scoreNames.get(player2score);
+    }
+
     public String getScore() {
         if (player1score == player2score) {
             return getEvenScore();
@@ -52,32 +56,8 @@ public class TennisGame {
             } else {
                 return "Advantage " + (player1score > player2score ? player1Name : player2Name);
             }
-        } else {
-            String score = "";
-            int tempScore = 0;
-            for (int i = 1; i < 3; i++) {
-                if (i == 1) {
-                    tempScore = player1score;
-                } else {
-                    score += "-";
-                    tempScore = player2score;
-                }
-                switch (tempScore) {
-                    case 0:
-                        score += "Love";
-                        break;
-                    case 1:
-                        score += "Fifteen";
-                        break;
-                    case 2:
-                        score += "Thirty";
-                        break;
-                    case 3:
-                        score += "Forty";
-                        break;
-                }
-            }
-            return score;
         }
+
+        return getMidgameScore();
     }
 }
