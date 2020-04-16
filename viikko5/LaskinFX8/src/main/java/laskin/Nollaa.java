@@ -10,6 +10,7 @@ public class Nollaa extends Komento {
 
     @Override
     public void suorita() {
+        edellinenArvo = sovellus.tulos();
         sovellus.nollaa();
         paivitaKentat();
     }

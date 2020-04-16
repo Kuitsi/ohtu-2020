@@ -10,6 +10,7 @@ public class Erotus extends Komento {
 
     @Override
     public void suorita() {
+        edellinenArvo = sovellus.tulos();
         int arvo = haeSyote();
         sovellus.miinus(arvo);
         paivitaKentat();

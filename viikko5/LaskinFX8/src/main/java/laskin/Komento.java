@@ -9,6 +9,7 @@ public abstract class Komento {
     protected Button nollaa;
     protected Button undo;
     protected Sovelluslogiikka sovellus;
+    protected int edellinenArvo;
 
     public Komento(TextField tuloskentta, TextField syotekentta, Button nollaa, Button undo, Sovelluslogiikka sovellus) {
         this.tuloskentta = tuloskentta;
@@ -42,7 +43,9 @@ public abstract class Komento {
 
     public abstract void suorita();
 
-    public /*abstract*/ void peru() {
-        System.out.println("undo pressed");
+    public void peru() {
+        sovellus.nollaa();
+        sovellus.plus(edellinenArvo);
+        paivitaKentat();
     }
 }
