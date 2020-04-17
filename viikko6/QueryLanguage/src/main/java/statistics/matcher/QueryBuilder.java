@@ -12,6 +12,16 @@ public class QueryBuilder {
         return this;
     }
 
+    public QueryBuilder hasAtLeast(int value, String category) {
+        this.query = new And(query,  new HasAtLeast(value, category));
+        return this;
+    }
+
+    public QueryBuilder hasFewerThan(int value, String category) {
+        this.query = new And(query,  new HasFewerThan(value, category));
+        return this;
+    }
+
     public Matcher build() {
         return query;
     }
