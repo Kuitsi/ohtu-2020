@@ -36,6 +36,7 @@ public class Main {
         );*/
         QueryBuilder query = new QueryBuilder();
         Matcher m = query
+                .playsIn("NYR")
                 .build();
 
         for (Player player : stats.matches(m)) {
