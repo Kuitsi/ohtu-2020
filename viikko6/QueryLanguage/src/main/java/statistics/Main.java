@@ -11,11 +11,10 @@ public class Main {
 
         Statistics stats = new Statistics(new PlayerReaderImpl(url));
 
-        Matcher m = new And( new HasAtLeast(5, "goals"),
+        /*Matcher m = new And( new HasAtLeast(5, "goals"),
                              new HasAtLeast(5, "assists"),
                              new PlaysIn("PHI")
-        );
-
+        );*/
         /*Matcher m = new And(
             new Not( new HasAtLeast(1, "goals") ),
             new PlaysIn("NYR")
@@ -35,6 +34,9 @@ public class Main {
                 new PlaysIn("NJD")
             )
         );*/
+        QueryBuilder query = new QueryBuilder();
+        Matcher m = query
+                .build();
 
         for (Player player : stats.matches(m)) {
             System.out.println(player);
