@@ -34,12 +34,20 @@ public class Main {
                 new PlaysIn("NJD")
             )
         );*/
-        QueryBuilder query = new QueryBuilder();
+        /*QueryBuilder query = new QueryBuilder();
         Matcher m = query
                 .playsIn("NYR")
                 .hasAtLeast(5, "goals")
                 .hasFewerThan(10, "goals")
-                .build();
+                .build();*/
+        Matcher m1 = new QueryBuilder().playsIn("PHI")
+            .hasAtLeast(10, "assists")
+            .hasFewerThan(8, "goals").build();
+
+        Matcher m2 = new QueryBuilder().playsIn("EDM")
+            .hasAtLeast(20, "points").build();
+
+        Matcher m = new QueryBuilder().oneOf(m1, m2).build();
 
         for (Player player : stats.matches(m)) {
             System.out.println(player);

@@ -22,6 +22,11 @@ public class QueryBuilder {
         return this;
     }
 
+    public QueryBuilder oneOf(Matcher m1, Matcher m2) {
+        this.query = new Or(m1,  m2);
+        return this;
+    }
+
     public Matcher build() {
         return query;
     }
