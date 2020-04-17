@@ -5,7 +5,7 @@ import statistics.matcher.*;
 public class Main {
     public static void main(String[] args) {
         // seuraavassa osoitteessa 27.11.2019 päivitetyt tilastot
-        String url = "https://nhl27112019.herokuapp.com/players.txt"
+        String url = "https://nhl27112019.herokuapp.com/players.txt";
         // ajan tasalla olevat tilastot osoitteessa
         // "https://nhlstatisticsforohtu.herokuapp.com/players.txt"
 
