@@ -19,7 +19,7 @@ public class Paaohjelma {
                 kaksinpeli.pelaa();
             } else if (vastaus.endsWith("b")) {
                 io.tulosta("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
-                KPSTekoaly yksinpeli = new KPSTekoaly(io);
+                KPSPeli yksinpeli = new KPSTekoaly(io);
                 yksinpeli.pelaa();
             } else if (vastaus.endsWith("c")) {
                 io.tulosta("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
