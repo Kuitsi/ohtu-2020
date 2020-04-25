@@ -2,15 +2,16 @@ package ohtu.kivipaperisakset;
 
 public class KPSTekoaly extends KPSPeli {
 
-    private Tekoaly tekoaly;
+    private AI tekoaly;
 
-    public KPSTekoaly(IO io) {
+    public KPSTekoaly(IO io, AI logiikka) {
         super(io);
-        this.tekoaly = new Tekoaly();
+        this.tekoaly = logiikka;
     }
 
     @Override
-    protected String pelaajan2siirto() {
+    protected String pelaajan2siirto(String ekanSiirto) {
+        tekoaly.asetaSiirto(ekanSiirto);
         String siirto = tekoaly.annaSiirto();
         io.tulosta("Tietokone valitsi: " + siirto);
         return siirto;

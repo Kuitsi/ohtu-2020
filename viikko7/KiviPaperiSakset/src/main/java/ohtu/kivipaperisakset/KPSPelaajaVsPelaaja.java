@@ -7,7 +7,7 @@ public class KPSPelaajaVsPelaaja extends KPSPeli {
     }
 
     @Override
-    protected String pelaajan2siirto() {
+    protected String pelaajan2siirto(String pelaajan1AiempiSiirto) {
         io.tulosta("Toisen pelaajan siirto: ");
         return io.seuraava();
     }

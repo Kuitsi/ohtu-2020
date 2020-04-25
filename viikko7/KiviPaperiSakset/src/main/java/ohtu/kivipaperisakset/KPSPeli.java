@@ -33,17 +33,21 @@ public abstract class KPSPeli {
     }
 
     private void teeSiirrot() {
+        // laahataan tekoälylle välitettäviä siirtoja yhden perässä, kun normaalistikin molemmat saavat tietää
+        // toisen valinnan samanaikaisesti -> voi muistaa vain aiempia valintoja eikä nähdä tulevaisuuteen
+        String ekanAiempiSiirto = ekanSiirto;
+
         io.tulosta("Ensimmäisen pelaajan siirto: ");
         ekanSiirto = io.seuraava();
 
-        tokanSiirto = pelaajan2siirto();
+        tokanSiirto = pelaajan2siirto(ekanAiempiSiirto);
     }
 
     private boolean onkoOkSiirto(String siirto) {
         return "k".equals(siirto) || "p".equals(siirto) || "s".equals(siirto);
     }
 
-    protected abstract String pelaajan2siirto();
+    protected abstract String pelaajan2siirto(String ekanSiirto);
 
     /**
      * Kysyy pelattavan pelin tyypin ja valmistelelee sen aloitettavaksi {@link #pelaa} metodilla
@@ -62,9 +66,9 @@ public abstract class KPSPeli {
         if (vastaus.endsWith("a")) {
             return new KPSPelaajaVsPelaaja(io);
         } else if (vastaus.endsWith("b")) {
-            return new KPSTekoaly(io);
-        } else if (vastaus.endsWith("c")) {;
-            return new KPSParempiTekoaly(io);
+            return new KPSTekoaly(io, new Tekoaly());
+        } else if (vastaus.endsWith("c")) {
+            return new KPSTekoaly(io, new TekoalyParannettu(20));
         }
         return null;
     }
