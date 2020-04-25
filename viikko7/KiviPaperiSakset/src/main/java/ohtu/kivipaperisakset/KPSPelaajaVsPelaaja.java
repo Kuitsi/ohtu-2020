@@ -1,34 +1,36 @@
 package ohtu.kivipaperisakset;
 
-import java.util.Scanner;
-
 public class KPSPelaajaVsPelaaja {
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private final IO io;
+
+    public KPSPelaajaVsPelaaja(IO io) {
+        this.io = io;
+    }
 
     public void pelaa() {
         Tuomari tuomari = new Tuomari();
 
-        System.out.print("Ensimmäisen pelaajan siirto: ");
-        String ekanSiirto = scanner.nextLine();
-        System.out.print("Toisen pelaajan siirto: ");
-        String tokanSiirto = scanner.nextLine();
+        io.tulosta("Ensimmäisen pelaajan siirto: ");
+        String ekanSiirto = io.seuraava();
+        io.tulosta("Toisen pelaajan siirto: ");
+        String tokanSiirto = io.seuraava();
 
         while (onkoOkSiirto(ekanSiirto) && onkoOkSiirto(tokanSiirto)) {
             tuomari.kirjaaSiirto(ekanSiirto, tokanSiirto);
-            System.out.println(tuomari);
-            System.out.println();
+            io.tulosta(tuomari);
+            io.tulosta("");
 
-            System.out.print("Ensimmäisen pelaajan siirto: ");
-            ekanSiirto = scanner.nextLine();
+            io.tulosta("Ensimmäisen pelaajan siirto: ");
+            ekanSiirto = io.seuraava();
             
-            System.out.print("Toisen pelaajan siirto: ");
-            tokanSiirto = scanner.nextLine();
+            io.tulosta("Toisen pelaajan siirto: ");
+            tokanSiirto = io.seuraava();
         }
 
-        System.out.println();
-        System.out.println("Kiitos!");
-        System.out.println(tuomari);
+        io.tulosta("");
+        io.tulosta("Kiitos!");
+        io.tulosta(tuomari);
     }
 
     private static boolean onkoOkSiirto(String siirto) {
