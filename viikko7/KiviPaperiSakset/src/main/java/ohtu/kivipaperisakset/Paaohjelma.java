@@ -15,7 +15,7 @@ public class Paaohjelma {
             String vastaus = io.seuraava();
             if (vastaus.endsWith("a")) {
                 io.tulosta("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
-                KPSPelaajaVsPelaaja kaksinpeli = new KPSPelaajaVsPelaaja(io);
+                KPSPeli kaksinpeli = new KPSPelaajaVsPelaaja(io);
                 kaksinpeli.pelaa();
             } else if (vastaus.endsWith("b")) {
                 io.tulosta("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
