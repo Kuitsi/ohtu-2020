@@ -23,7 +23,7 @@ public class Paaohjelma {
                 yksinpeli.pelaa();
             } else if (vastaus.endsWith("c")) {
                 io.tulosta("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
-                KPSParempiTekoaly pahaYksinpeli = new KPSParempiTekoaly(io);
+                KPSPeli pahaYksinpeli = new KPSParempiTekoaly(io);
                 pahaYksinpeli.pelaa();
             } else {
                 break;
