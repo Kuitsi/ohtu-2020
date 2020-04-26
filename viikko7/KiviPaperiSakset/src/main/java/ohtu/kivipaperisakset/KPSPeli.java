@@ -19,8 +19,7 @@ public abstract class KPSPeli {
         io.tulosta("peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
         teeSiirrot();
 
-        while (onkoOkSiirto(ekanSiirto) && onkoOkSiirto(tokanSiirto)) {
-            tuomari.kirjaaSiirto(ekanSiirto, tokanSiirto);
+        while (tuomari.kirjaaSiirto(ekanSiirto, tokanSiirto)) {
             io.tulosta(tuomari);
             io.tulosta("");
 
@@ -41,10 +40,6 @@ public abstract class KPSPeli {
         ekanSiirto = io.seuraava();
 
         tokanSiirto = pelaajan2siirto(ekanAiempiSiirto);
-    }
-
-    private boolean onkoOkSiirto(String siirto) {
-        return "k".equals(siirto) || "p".equals(siirto) || "s".equals(siirto);
     }
 
     protected abstract String pelaajan2siirto(String ekanSiirto);

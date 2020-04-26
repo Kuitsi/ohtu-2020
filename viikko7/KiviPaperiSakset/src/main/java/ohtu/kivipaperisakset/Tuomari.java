@@ -15,7 +15,17 @@ public class Tuomari {
         this.tasapelit = 0;
     }
 
-    public void kirjaaSiirto(String ekanSiirto, String tokanSiirto) {
+    /**
+     * Kirjaa seuraavan siirron
+     * @param ekanSiirto pelaajan 1 siirto
+     * @param tokanSiirto pelaajan 2 siirto
+     * @return true jos siirrot olivat kelvolliset ja ne kirjattiin, muuten false
+     */
+    public boolean kirjaaSiirto(String ekanSiirto, String tokanSiirto) {
+        if (!(onkoOkSiirto(ekanSiirto) && onkoOkSiirto(tokanSiirto))) {
+            return false;
+        }
+
         if (tasapeli(ekanSiirto, tokanSiirto)) {
             tasapelit++;
         } else if (ekaVoittaa(ekanSiirto, tokanSiirto)) {
@@ -23,6 +33,7 @@ public class Tuomari {
         } else {
             tokanPisteet++;
         }
+        return true;
     }
 
     // sisäinen metodi, jolla tarkastetaan tuliko tasapeli
@@ -40,6 +51,10 @@ public class Tuomari {
             return true;
         }
         return false;
+    }
+
+    private boolean onkoOkSiirto(String siirto) {
+        return "k".equals(siirto) || "p".equals(siirto) || "s".equals(siirto);
     }
 
     @Override
