@@ -36,12 +36,10 @@ public class Tuomari {
         return true;
     }
 
-    // sisäinen metodi, jolla tarkastetaan tuliko tasapeli
     private boolean tasapeli(String eka, String toka) {
         return eka.equals(toka);
     }
 
-    // sisäinen metodi joka tarkastaa voittaako eka pelaaja tokan
     private boolean ekaVoittaa(String eka, String toka) {
         if ("k".equals(eka) && "s".equals(toka)) {
             return true;

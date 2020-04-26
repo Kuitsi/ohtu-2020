@@ -1,6 +1,8 @@
 package ohtu.kivipaperisakset;
 
-// "Muistava tekoäly"
+/**
+ * Muistava tekoäly
+ */
 public class TekoalyParannettu implements AI {
 
     private String[] muisti;
