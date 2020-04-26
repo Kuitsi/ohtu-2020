@@ -9,7 +9,7 @@ public class Tekoaly implements AI {
     }
 
     @Override
-    public String annaSiirto() {
+    public String seuraavaSiirto() {
         siirto++;
         siirto = siirto % 3;
 
@@ -23,7 +23,7 @@ public class Tekoaly implements AI {
     }
 
     @Override
-    public void asetaSiirto(String pelaajan1AiempiSiirto) {
+    public void havainnoiSiirto(String vastustajanAiempiSiirto) {
         // ei tehdä mitään, noudatetaan samaa logiikkaa koko ajan
     }
 }

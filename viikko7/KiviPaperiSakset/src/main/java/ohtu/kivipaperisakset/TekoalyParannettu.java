@@ -14,7 +14,7 @@ public class TekoalyParannettu implements AI {
     }
 
     @Override
-    public void asetaSiirto(String siirto) {
+    public void havainnoiSiirto(String vastustajanAiempiSiirto) {
         // jos muisti täyttyy, unohdetaan viimeinen alkio
         if (vapaaMuistiIndeksi == muisti.length) {
             for (int i = 1; i < muisti.length; i++) {
@@ -24,12 +24,12 @@ public class TekoalyParannettu implements AI {
             vapaaMuistiIndeksi--;
         }
 
-        muisti[vapaaMuistiIndeksi] = siirto;
+        muisti[vapaaMuistiIndeksi] = vastustajanAiempiSiirto;
         vapaaMuistiIndeksi++;
     }
 
     @Override
-    public String annaSiirto() {
+    public String seuraavaSiirto() {
         if (vapaaMuistiIndeksi == 0 || vapaaMuistiIndeksi == 1) {
             return "k";
         }

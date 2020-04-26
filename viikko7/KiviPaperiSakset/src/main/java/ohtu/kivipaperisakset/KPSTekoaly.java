@@ -10,9 +10,9 @@ public class KPSTekoaly extends KPSPeli {
     }
 
     @Override
-    protected String pelaajan2siirto(String ekanSiirto) {
-        tekoaly.asetaSiirto(ekanSiirto);
-        String siirto = tekoaly.annaSiirto();
+    protected String pelaajan2siirto(String vastustajanAiempiSiirto) {
+        tekoaly.havainnoiSiirto(vastustajanAiempiSiirto);
+        String siirto = tekoaly.seuraavaSiirto();
         io.tulosta("Tietokone valitsi: " + siirto);
         return siirto;
     }

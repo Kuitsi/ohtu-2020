@@ -36,16 +36,16 @@ public class Tuomari {
         return true;
     }
 
-    private boolean tasapeli(String eka, String toka) {
-        return eka.equals(toka);
+    private boolean tasapeli(String ekanSiirto, String tokanSiirto) {
+        return ekanSiirto.equals(tokanSiirto);
     }
 
-    private boolean ekaVoittaa(String eka, String toka) {
-        if ("k".equals(eka) && "s".equals(toka)) {
+    private boolean ekaVoittaa(String ekanSiirto, String tokanSiirto) {
+        if ("k".equals(ekanSiirto) && "s".equals(tokanSiirto)) {
             return true;
-        } else if ("s".equals(eka) && "p".equals(toka)) {
+        } else if ("s".equals(ekanSiirto) && "p".equals(tokanSiirto)) {
             return true;
-        } else if ("p".equals(eka) && "k".equals(toka)) {
+        } else if ("p".equals(ekanSiirto) && "k".equals(tokanSiirto)) {
             return true;
         }
         return false;
